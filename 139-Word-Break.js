@@ -8,7 +8,7 @@ So we need to see if the right substring STARTING at the partition to the end in
 
 If so, we can set dp[end] = true. And this means that the substring s.slice(0, end) can be made up of words from the wordDict.
 */
-
+// Bottom Up
 // TC: O(n^3), SC: O(n + w) where n = s.length and w = wordDict.length;
 
 const wordBreak = (string, wordDict) => {
@@ -29,4 +29,29 @@ const wordBreak = (string, wordDict) => {
         }
     }
     return canWordBreak[string.length];
+}
+
+// Top Down
+// T:O(n^3) S:O(n)
+const wordBreak = (s, wordDict) => {
+    const memo = {};
+    const wordSet = new Set(wordDict);
+    
+    const canWordBeBroken = (index) => {
+        if(index === s.length) return true;
+        if(index in memo) return memo[index];
+        
+        for(let i = index; i < s.length; i++){
+            const word = s.slice(index, i + 1);
+            if(wordSet.has(word) && canWordBeBroken(i + 1)) {
+                memo[index] = true;
+                return true;
+            }
+        }
+        
+        memo[index] = false;
+        return false
+    }
+    
+    return canWordBeBroken(0)
 }
