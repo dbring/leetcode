@@ -1,5 +1,9 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
+        """
+        https://leetcode.com/problems/reverse-words-in-a-string
+        TC: O(n) S:O(n) where n = len(s)
+        """
         s = s.strip()
         words = []
 
