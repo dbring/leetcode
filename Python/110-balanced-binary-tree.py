@@ -8,6 +8,12 @@ class TreeNode:
 
 class Solution:
     def isBalanced(self, root: TreeNode | None) -> bool:
+        """
+        https://leetcode.com/problems/balanced-binary-tree/
+
+        TC: O(n), SC: O(h) where n is the number of nodes in the tree
+        and h is the height of the tree, and h = n in the worst case.
+        """
         is_balanced = True
 
         def tree_height(node):
