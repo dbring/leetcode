@@ -8,6 +8,12 @@ class TreeNode:
 
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode | None) -> int:
+        """
+        https://leetcode.com/problems/diameter-of-binary-tree/description/
+
+        TC: O(n) SC: O(h) where n is the number of nodes in the tree
+        and h is the height of the tree, and h = n in the worst case.
+        """
         diameter = 0
 
         def find_diameter(node):
