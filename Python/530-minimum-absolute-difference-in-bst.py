@@ -8,6 +8,12 @@ class TreeNode:
 
 class Solution:
     def getMinimumDifference(self, root: TreeNode | None) -> int:
+        """
+        https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+
+        TC: O(n), SC: O(h) where n is the number of nodes in the tree and h is
+        the height of the tree.
+        """
         min_diff = float("inf")
         prev = None
 
