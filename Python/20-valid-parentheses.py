@@ -4,17 +4,15 @@ class Solution:
         TC: O(n) SC: O(n), n = len(str)
         """
         stack = []
-        brackets = {"(": ")", "{": "}", "[": "]"}
+        parens = {")": "(", "}": "{", "]": "["}
 
-        for c in s:
-            if c in brackets:
-                stack.append(c)
+        for paren in s:
+            if paren in parens:
+                if stack and parens[paren] == stack[-1]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                if not stack:
-                    return False
+                stack.append(paren)
 
-                open_bracket = stack.pop()
-                if brackets[open_bracket] != c:
-                    return False
-
-        return not stack
+        return len(stack) == 0
