@@ -19,6 +19,7 @@ class Solution:
 
         self.invertTree_recursive_dfs(root.left)
         self.invertTree_recursive_dfs(root.right)
+
         return root
 
     def invertTree_iterative_dfs(self, root: TreeNode | None) -> TreeNode | None:

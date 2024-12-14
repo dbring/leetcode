@@ -1,14 +1,16 @@
 class Solution:
-    def maxProfit(self, prices: list[int]) -> int:
+    def maxProfit(self, prices: List[int]) -> int:
         """
-        TC: O(n) S:O(1) where n = len(prices)
+        TC: O(n), SC: O(1) where n = len(prices)
+        The thing to realize here is that min_buy should
+        monotonically decrease as we iterate
         """
+        min_buy = float("inf")
         max_profit = 0
-        buy_day = 0
-        for sell_day in range(1, len(prices)):
-            profit = prices[sell_day] - prices[buy_day]
-            if profit > 0:
-                max_profit = max(max_profit, profit)
-            else:
-                buy_day = sell_day
+
+        for sell in prices:
+            profit = sell - min_buy
+            max_profit = max(max_profit, profit)
+            min_buy = min(min_buy, sell)
+
         return max_profit
