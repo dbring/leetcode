@@ -8,6 +8,10 @@ class TreeNode:
 
 class Solution:
     def isValidBST(self, root: TreeNode | None) -> bool:
+        """
+        TC: O(n), SC: O(n) where n is the number of nodes in the tree
+        """
+
         def is_valid(node, min, max):
             if not node:
                 return True
@@ -21,3 +25,23 @@ class Solution:
             return is_left_subtree_valid and is_right_subtree_valid
 
         return is_valid(root, float("-inf"), float("inf"))
+
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        from collections import deque
+
+        queue = deque()
+        queue.append((root, float("-inf"), float("inf")))
+
+        while queue:
+            node, left, right = queue.pop()
+
+            if not node:
+                continue
+
+            if not (left < node.val < right):
+                return False
+
+            queue.append((node.left, left, node.val))
+            queue.append((node.right, node.val, right))
+
+        return True
